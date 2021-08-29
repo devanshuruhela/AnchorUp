@@ -243,6 +243,40 @@ button:focus
 {
   outline: none;
 }
+
+
+/* footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 30px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  text-align: center;
+  padding: 300px 0 300px 0;
+  margin:250px 0 0 0;
+  z-index: 2;
+  animation: flash 1.5s ease-in-out forwards;
+}
+@keyframes flash {
+  0%
+  {
+    opacity: 1;
+  }
+  20%{
+    opacity: 1;
+  }
+  60%
+  {
+    opacity: 1;
+  }
+  100%{
+  opacity: 0;
+  }
+  
+}
+
 @media screen and (max-width:600px) {
   h1#title
   {
