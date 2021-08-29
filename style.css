@@ -127,7 +127,7 @@ a:hover{
 .modal-container
 {
   background-color:rgba(0, 0, 0, 0.6);
-  /* display: none; */
+  display: none;
   position: fixed;
   top:0;
   left: 0;
@@ -204,11 +204,15 @@ h3{
 {
   width: 97%;
   border-radius: 8px;
-  border: solid #0077ed;
   outline: none;
   padding: 10px;
   display: block;
+  border: none;
 
+}
+.form-input:focus{
+   border: 1.5px solid #0077ed;
+   outline: none;
 }
 .form-label
 {
