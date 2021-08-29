@@ -9,6 +9,65 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- title -->
+    <h1 id="title">AnchorUp</h1>
+    <!-- Open Modal -->
+    <h1 id="show-modal">Add Bookmark</h1>
+    <!-- Bookmarks -->
+    <div class="container" id="bookmarks-container">
+        <div class="items">
+            <div class="name">
+                <img src="https://www.google.com/s2/favicons?domain=www.google.com" alt="Favicon">
+                <a href="https://www.google.com/" target="_blank">Google one</a>
+                <i class="fas fa-times-circle" id="delete-icon"></i>
+            </div>
+        </div>
+        <div class="items">
+            <div class="name">
+                <img src="https://www.google.com/s2/favicons?domain=www.google.com" alt="Favicon">
+                <a href="https://www.google.com/" target="_blank">Google two</a>
+                <i class="fas fa-times-circle" id="delete-icon"></i>
+            </div>
+        </div>
+        <div class="items">
+            <div class="name">
+                <img src="https://www.google.com/s2/favicons?domain=www.google.com" alt="Favicon">
+                <a href="https://www.google.com/" target="_blank">Google three</a>
+                <i class="fas fa-times-circle" id="delete-icon"></i>
+            </div>
+        </div>
+        <div class="items">
+            <div class="name">
+                <img src="https://www.google.com/s2/favicons?domain=www.google.com" alt="Favicon">
+                <a href="https://www.google.com/" target="_blank">Google Four</a>
+                <i class="fas fa-times-circle" id="delete-icon"></i>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
+    <div class="modal-container show-modal" id="modal">
+        <div class="modal">
+                <div class="modal-header">
+                    <h3>Add Bookmark</h3>
+                    <i class="fas fa-times close-icon" id="close-modal"></i>
+                </div>
+                <div class="modal-content">
+                    <form id="bookmark-form">
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label for="website-name" class="form-label">Website Name</label>
+                            <input type="text" id="website-name" class="form-input" placeholder="Enter the website name here">
+                        </div>
+                        <!-- URL -->
+                        <div class="form-group">
+                            <label for="website-url" class="form-label">Website URL</label>
+                            <input type="text" id="website-url" class="form-input" placeholder="Paste the website URL here">
+                        </div>
+                        <button type="submit">Save</button>
+                    </form>
+                </div>
+        </div>
+    </div>
     <!-- Script -->
     <script src="script.js"></script>
 </body>
