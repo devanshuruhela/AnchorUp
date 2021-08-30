@@ -7,8 +7,8 @@ const websiteinputElt = document.getElementById('website-name');
 const websiteurlElt = document.getElementById('website-url');
 // bookmark related
 const bookmarkcontainer = document.getElementById('bookmarks-container');
-const footer = document.getElementById('footer');
-const footertext = document.getElementById('footertext');
+const splash = document.getElementById('splash');
+const splashtext = document.getElementById('splashtext');
 
 //array to store values
 let bookmarkarr = [
@@ -69,11 +69,24 @@ function getbookmarkdata(event)
   localStorage.setItem('allbookmarks' , JSON.stringify(bookmarkarr));
   showbookmarks();
   bookmarkform.reset();
-  websiteinputElt.focus();
+  modal.classList.remove("show-modal");
+}
+
+function deletebookmark(link)
+{
+ allbookmarks.forEach((element , i)=> {
+   if(element.url === link)
+   {
+     allbookmarks.splice(i,1);
+   }
+ });
+ localStorage.setItem("allbookmarks", JSON.stringify(allbookmarks));
+ showbookmarks(); 
 }
 
 function bookmarkbuilder()
 {
+  bookmarkcontainer.textContent='';
   allbookmarks.forEach(element => {
     const { name, url } = element;
     //console.log(name,url);
@@ -125,11 +138,11 @@ closemodalbtn.addEventListener("click", hidemodal);
 // form events
 bookmarkform.addEventListener('submit' , getbookmarkdata)
 showbookmarks();
-//footer
-footer.classList.add('footer');
-footertext.textContent = "Made with ❤ by Devanshu";
+//splash
+splash.classList.add('splash');
+splashtext.textContent = "AnchorUp";
 setTimeout(() => {
-  footertext.textContent = "";
-  footer.classList.remove('footer');
+  splashtext.textContent = null;
+  splash.classList.remove('splash');
 },1200);
 
