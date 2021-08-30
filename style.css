@@ -100,12 +100,12 @@ a:hover{
   justify-content: center;
   align-items: center;
 }
-#delete-icon
+.delete-icon
 {
   margin-left: 30px;
   font-size: 20px;
 }
-#delete-icon:hover
+.delete-icon:hover
 {
   transform: scale(1.2);
 }
@@ -251,28 +251,44 @@ button:focus
   bottom: 0;
   width: 100%;
   font-size: 30px;
-  background-color: rgba(0, 0, 0, 0.9);
-  color: white;
+  background-color: rgba(205, 232, 255, 0.98);
+  color: rgb(0, 0, 0);
   text-align: center;
   padding: 300px 0 300px 0;
   margin:250px 0 0 0;
   z-index: 2;
-  animation: flash 1.5s ease-in-out forwards;
+  font-weight: bolder;
+  letter-spacing: 10px;
+  animation: flash 1.5s ease forwards;
 }
 @keyframes flash {
   0%
   {
     opacity: 1;
+    font-size: 10px;
   }
   20%{
     opacity: 1;
+    text-size:20px;
+  }
+  40%
+  {
+    opacity: 1;
+    text-size:25px;
   }
   60%
   {
     opacity: 1;
+    text-size:30px;
+  }
+  80%
+  {
+    opacity: 1;
+    text-size:30px
   }
   100%{
   opacity: 0;
+
   }
   
 }

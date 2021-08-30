@@ -8,7 +8,13 @@ const websiteurlElt = document.getElementById('website-url');
 // bookmark related
 const bookmarkcontainer = document.getElementById('bookmarks-container');
 const footer = document.getElementById('footer');
-const footertext = document.getElementById('footertext')
+const footertext = document.getElementById('footertext');
+
+//array to store values
+let bookmarkarr = [
+  
+];
+
 function showmodal()
 {
   modal.classList.add('show-modal');
@@ -52,6 +58,64 @@ function getbookmarkdata(event)
   {
     return false;
   }
+  const bookmarkobj=
+  {
+    name:websitename,
+    url:websiteurl
+  }
+  bookmarkarr.push(bookmarkobj);
+  //console.log(bookmarkarr.length)
+  
+  localStorage.setItem('allbookmarks' , JSON.stringify(bookmarkarr));
+  showbookmarks();
+  bookmarkform.reset();
+  websiteinputElt.focus();
+}
+
+function bookmarkbuilder()
+{
+  allbookmarks.forEach(element => {
+    const { name, url } = element;
+    //console.log(name,url);
+    const item = document.createElement("div");
+    item.classList.add("items");
+    //bookmark name
+    const bookmarkname = document.createElement('div');
+    bookmarkname.classList.add('name');
+    //favicon
+    const favicon = document.createElement('img')
+    favicon.setAttribute(
+      "src",
+      `https://s2.googleusercontent.com/s2/favicons?domain=${url}`
+    );
+    favicon.setAttribute('alt' , 'Favicon icon')
+    //link
+    const link = document.createElement('a');
+    link.setAttribute('href' , `${url}`)
+    link.setAttribute('target' , '_blank');
+    link.textContent = name;
+    // deleting bookmark
+    const deleteicon = document.createElement("i");
+    deleteicon.classList.add("fas", "fa-times-circle" , "delete-icon");
+    deleteicon.setAttribute("title", "Delete Bookmark");
+    deleteicon.setAttribute("onclick", `deletebookmark('${url}')`);
+
+    //creating whole item
+    bookmarkname.append(favicon , link , deleteicon);
+    item.appendChild(bookmarkname);
+    bookmarkcontainer.appendChild(item);
+
+  });
+}
+
+
+function showbookmarks()
+{
+  if(localStorage.getItem('allbookmarks'))
+  {
+    allbookmarks = JSON.parse(localStorage.getItem("allbookmarks"));
+  }
+  bookmarkbuilder();
 }
 // modal events
 window.addEventListener('click' , hidemodal);
@@ -60,7 +124,7 @@ closemodalbtn.addEventListener("click", hidemodal);
 
 // form events
 bookmarkform.addEventListener('submit' , getbookmarkdata)
-
+showbookmarks();
 //footer
 footer.classList.add('footer');
 footertext.textContent = "Made with ❤ by Devanshu";
