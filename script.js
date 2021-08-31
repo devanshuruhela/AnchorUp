@@ -11,9 +11,7 @@ const splash = document.getElementById('splash');
 const splashtext = document.getElementById('splashtext');
 
 //array to store values
-let bookmarkarr = [
-  
-];
+let bookmarkarr = [];
 
 function showmodal()
 {
@@ -31,13 +29,13 @@ function hidemodal(e){
 function validate(websitename , websiteurl)
 {
   const expression= /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
-
-  if (!websitename )
+  const regex = new RegExp(expression);
+  if (!websitename || !websiteurl)
   {
     alert('oops! Enter your website name first');
     return false;
   }
-  const regex = new RegExp(expression);
+  
   if(!websiteurl.match(regex))
   {
     alert('Please Enter a Valid URL');
@@ -46,31 +44,7 @@ function validate(websitename , websiteurl)
   return true;
 }
 
-function getbookmarkdata(event)
-{
-  event.preventDefault();
-  const websitename = websiteinputElt.value;
-  let websiteurl = websiteurlElt.value;
-  if (!websiteurl.includes("https://") && !websiteurl.includes("http://")) {
-    websiteurl = `https://${websiteurl}`;
-  }
-  if(!validate(websitename, websiteurl))
-  {
-    return false;
-  }
-  const bookmarkobj=
-  {
-    name:websitename,
-    url:websiteurl
-  }
-  bookmarkarr.push(bookmarkobj);
-  //console.log(bookmarkarr.length)
-  
-  localStorage.setItem('allbookmarks' , JSON.stringify(bookmarkarr));
-  showbookmarks();
-  bookmarkform.reset();
-  modal.classList.remove("show-modal");
-}
+
 
 function deletebookmark(link)
 {
@@ -115,7 +89,7 @@ function bookmarkbuilder()
 
     //creating whole item
     bookmarkname.append(favicon , link , deleteicon);
-    item.appendChild(bookmarkname);
+    item.append(bookmarkname);
     bookmarkcontainer.appendChild(item);
 
   });
@@ -128,7 +102,39 @@ function showbookmarks()
   {
     allbookmarks = JSON.parse(localStorage.getItem("allbookmarks"));
   }
+  else{
+    allbookmarks = [
+      {
+        name: "Connect me on Linkedin",
+        url: "https://www.linkedin.com/in/devanshuruhela/",
+      },
+    ];
+    localStorage.setItem("allbookmarks", JSON.stringify(allbookmarks));
+  }
   bookmarkbuilder();
+}
+function getbookmarkdata(event) {
+  event.preventDefault();
+  const websitename = websiteinputElt.value;
+  let websiteurl = websiteurlElt.value;
+  if (!websiteurl.includes("https://") && !websiteurl.includes("http://")) {
+    websiteurl = `https://${websiteurl}`;
+  }
+  if (!validate(websitename, websiteurl)) {
+    return false;
+  }
+  const bookmarkobj = {
+    name: websitename,
+    url: websiteurl,
+  };
+  allbookmarks.push(bookmarkobj);
+  //console.log(bookmarkarr.length)
+
+  localStorage.setItem("allbookmarks", JSON.stringify(allbookmarks));
+  showbookmarks();
+  bookmarkform.reset();
+  websiteinputElt.focus();
+  modal.classList.remove("show-modal");
 }
 // modal events
 window.addEventListener('click' , hidemodal);
@@ -142,7 +148,7 @@ showbookmarks();
 splash.classList.add('splash');
 splashtext.textContent = "AnchorUp";
 setTimeout(() => {
-  splashtext.textContent = null;
+  splashtext.textContent = '';
   splash.classList.remove('splash');
 },1200);
 
