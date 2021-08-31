@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap');
+
 :root
 {
   --primary-color:#ececec;
   --border-radius:12px;
-}
+}                                   
 html {
   box-sizing: border-box;
 }
@@ -16,9 +17,9 @@ body {
 }
 h1#title
 {
-  font-size:80px;
+  font-size:70px;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 10px;
   margin-bottom:15px;
   /* margin-right: 20px;
   margin-left: 20px; */
@@ -29,7 +30,7 @@ h1#title
 h1#show-modal{
   color: #fff;
   font-size:20px;
-  padding: 15px 25px 15px 25px;
+  padding: 10px 25px 10px 25px;
   width: 200px;
   background-color: #0077ed;
   box-shadow: 5px 5px 20px #0076edb2;
@@ -53,7 +54,7 @@ h1#show-modal:hover{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
 
 }
 
@@ -308,6 +309,10 @@ button:focus
   {
      color: rgb(150, 150, 150);
   }
+  .container
+  {
+    justify-content: center;
+  }
 }
 
 .footer {
@@ -316,9 +321,8 @@ button:focus
   bottom: 0;
   width: 100%;
   color: #fff;
-  background-color: #0076edf3;
-  font-weight:700;
+  background-color: rgb(79, 137, 187);
   letter-spacing: 2px;
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
 }
